@@ -7,14 +7,15 @@ import { ContactComponent } from "./contact.component";
     <ul>
         <li *ngFor="#contact of contacts"
             (click)="onSelect(contact)"
-            [class.clicked]="showDetail === true" 
+            [class.clicked]="selectedContact === contact" 
         >
         {{contact.firstName}} {{contact.lastName}}
         </li>
     </ul>
     <contact [contact]="selectedContact"></contact>
     `,
-    directives: [ContactComponent]
+    directives: [ContactComponent],
+    styleUrls: ["../src/css/app.css"]
 })
 export class ContactListComponent {
     public contacts = [

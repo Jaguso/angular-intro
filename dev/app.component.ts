@@ -6,8 +6,7 @@ import { ContactListComponent } from './contacts/contact-list.component';
     template: ` 
         <contact-list></contact-list>       
     `,
-    directives: [ContactListComponent],
-    styleUrls: ["../src/css/app.css"]
+    directives: [ContactListComponent]
 })
 export class AppComponent {
     
