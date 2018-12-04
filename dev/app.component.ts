@@ -3,25 +3,45 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'my-app',
     template: ` 
-        <h3 
-        (click)="onSelect()"
-        [class.clicked]="showDetail === true" 
-        >{{contact.firstName}} {{contact.lastName}}</h3>
-        <input [(ngModel)]="contact.firstName" type="text">
-        <div *ngIf="showDetail === true">
-            Phone Number: {{contact.phone}}<br>
-            Email: {{contact.email}}
-        </div>        
+        <ul>
+            <li *ngFor="#contact of contacts"
+                (click)="onSelect()"
+                [class.clicked]="showDetail === true" 
+            >
+            {{contact.firstName}} {{contact.lastName}}
+            </li>
+        </ul>
+                
     `,
     styleUrls: ["../src/css/app.css"]
 })
 export class AppComponent {
-    public contact = {
-        firstName: "Jaime",
-        lastName: "Garcia",
-        phone: "345920349",
-        email: "jj@gmail.com"
-    };
+    public contacts = [
+        {
+            firstName: "Raul",
+            lastName: "Maquez",
+            phone: "345920349",
+            email: "marq@gmail.com"
+        },
+        {
+            firstName: "Joseph",
+            lastName: "Garcia",
+            phone: "345920349",
+            email: "jj@gmail.com"
+        },
+        {
+            firstName: "Mark",
+            lastName: "Anthony",
+            phone: "345920349",
+            email: "anthonie@gmail.com"
+        },
+        {
+            firstName: "Javier",
+            lastName: "Hernandez",
+            phone: "3349920349",
+            email: "chicha@gmail.com"
+        }
+    ];
 
     public showDetail = false;
 
