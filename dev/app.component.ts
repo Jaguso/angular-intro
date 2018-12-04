@@ -5,13 +5,17 @@ import {Component} from 'angular2/core';
     template: ` 
         <ul>
             <li *ngFor="#contact of contacts"
-                (click)="onSelect()"
+                (click)="onSelect(contact)"
                 [class.clicked]="showDetail === true" 
             >
             {{contact.firstName}} {{contact.lastName}}
             </li>
         </ul>
-                
+        <input [(ngModel)]="selectedContact.firstName" type="text">
+        <div>
+            Phone Number: {{selectedContact.phone}}<br>
+            Email: {{selectedContact.email}}
+        </div>        
     `,
     styleUrls: ["../src/css/app.css"]
 })
@@ -43,9 +47,9 @@ export class AppComponent {
         }
     ];
 
-    public showDetail = false;
+    public selectedContact = {};
 
-    onSelect() {
-        this.showDetail = true;
+    onSelect(contact) {
+        this.selectedContact = contact;
     }
 }
