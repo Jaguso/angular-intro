@@ -12,7 +12,7 @@ import {OnInit} from "angular2/core";
             (click)="onSelect(contact)"
             [class.clicked]="selectedContact === contact" 
         >
-        {{contact.firstName}} {{contact.lastName}}
+        {{contact.firstName}} {{contact.lastName}} {{contact.phone}} {{contact.email}}
         </li>
     </ul>
     <contact [contact]="selectedContact"></contact>
