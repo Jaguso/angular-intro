@@ -1,5 +1,7 @@
 import {Component} from "angular2/core";
+// import construct = Reflect.construct;
 import { ContactService } from "./contact.service";
+import {Router} from "angular2/router";
 
 @Component({
     template: `
@@ -37,10 +39,11 @@ import { ContactService } from "./contact.service";
 })
 export class NewContactComponent 
 {   
-    constructor(private _contactService: ContactService) {}
+    constructor(private _contactService: ContactService, private _router: Router) {}
     
     onAddContact(firstName, lastName, phone, email) {
         let contact: Contact = {firstName: firstName, lastName: lastName, phone: phone, email: email};
         this._contactService.insertContact(contact);
+        this._router.navigate(['Contacts']);
     }
 }
