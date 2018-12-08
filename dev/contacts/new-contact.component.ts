@@ -14,7 +14,9 @@ import { Contact } from "./contact";
                 ngControl="firstName"
                 [(ngModel)]="newContact.firstName"
                 required 
+                #firstName="ngForm"
             >
+            <span *ngIf="!firstName.valid">Not valid</span>
         </div>
         <div>
             <label for="last-name">Last Name:</label> 
@@ -40,7 +42,7 @@ import { Contact } from "./contact";
                 required 
             >
         </div>
-        <button type="submit">Create Contact</button>
+        <button type="submit" [disabled]="!myForm.form.valid">Create Contact</button>
     </form> 
     `,
     providers: [ContactService],
