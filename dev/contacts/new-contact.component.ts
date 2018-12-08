@@ -2,6 +2,7 @@ import {Component} from "angular2/core";
 // import construct = Reflect.construct;
 import { ContactService } from "./contact.service";
 import {Router, RouteParams} from "angular2/router";
+import {OnInit} from "angular2/core";
 import { Contact } from "./contact";
 
 @Component({
@@ -11,7 +12,7 @@ import { Contact } from "./contact";
             <label for="first-name">First Name:</label>  
             <input type="text" id="first-name" 
                 ngControl="firstName"
-                [(ngModel)]="newContact.firsName"
+                [(ngModel)]="newContact.firstName"
                 required 
             >
         </div>
@@ -63,15 +64,10 @@ export class NewContactComponent implements OnInit
     newContact: Contact; 
 
     constructor(private _contactService: ContactService, private _router: Router, private _routeParams: RouteParams) {}
-    
-    onAddContact(firstName, lastName, phone, email) {
-        let contact: Contact = {firstName: firstName, lastName: lastName, phone: phone, email: email};
-        this._contactService.insertContact(contact);
-        this._router.navigate(['Contacts']);
-    }
 
     onSubmit() {
-
+        this._contactService.insertContact(this.newContact);
+        this._router.navigate(['Contacts']);
     }
 
     ngOnInit():any {
