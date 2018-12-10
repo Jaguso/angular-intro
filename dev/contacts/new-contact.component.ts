@@ -9,31 +9,34 @@ import {Validators} from "angular2/common";
 
 @Component({
     template: `
-    <form (ngSubmit)="onSubmit()">
+    <form [ngFormModel]="myForm" (ngSubmit)="onSubmit(myForm.value)">
         <div>
             <label for="first-name">First Name:</label>  
             <input type="text" id="first-name" 
+            [ngFormControl]="myForm.controls['firstName']"
+            #firstName="ngForm"
             >
+            <span *ngIf="!firstName.valid">Not valid</span>
         </div>
         <div>
             <label for="last-name">Last Name:</label> 
             <input type="text" id="last-name"
-            
+            [ngFormControl]="myForm.controls['lastName']"
             >
         </div>
         <div>
             <label for="phone">Phone Number:</label> 
             <input type="text" id="phone" 
-               
+            [ngFormControl]="myForm.controls['phone']"
             >
         </div>
         <div>
             <label for="email">E-mail:</label> 
             <input type="text" id="email" 
-                
+            [ngFormControl]="myForm.controls['email']"
             >
         </div>
-        <button type="submit">Create Contact</button>
+        <button type="submit" [disabled]="!myForm.valid">Create Contact</button>
     </form> 
     `,
     providers: [ContactService],
@@ -63,8 +66,8 @@ export class NewContactComponent implements OnInit
         private _formBuilder: FormBuilder
     ) {}
 
-    onSubmit() {
-        this._contactService.insertContact(this.myForm.value);
+    onSubmit(value) {
+        this._contactService.insertContact(value);
         this._router.navigate(['Contacts']);
     }
 
